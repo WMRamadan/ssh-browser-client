@@ -1,0 +1,24 @@
+{
+  "name": "ssh-browser-client",
+  "version": "1.0.0",
+  "description": "An SSH client in the browser",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WMRamadan/ssh-browser-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WMRamadan/ssh-browser-client/issues"
+  },
+  "homepage": "https://github.com/WMRamadan/ssh-browser-client#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0",
+    "ssh2": "^0.8.9",
+    "xterm": "^4.8.1"
+  }
+}

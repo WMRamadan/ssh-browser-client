@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>SSH Browser Client</title>
+    <link rel="stylesheet" href="/xterm/css/xterm.css" />
+    <script src="/xterm/lib/xterm.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        var terminalContainer = document.getElementById('terminal-container');
+        var term = new Terminal({ cursorBlink: true });
+        term.open(terminalContainer);
+
+        var socket = io.connect();
+        socket.on('connect', function() {
+          term.write('\r\n*** Connected ***\r\n');
+
+          // Browser -> Server
+          term.onData(function(data) {
+            socket.emit('data', data);
+          });
+
+          // Server -> Browser
+          socket.on('data', function(data) {
+            term.write(data);
+          });
+
+          socket.on('disconnect', function() {
+            term.write('\r\n*** Disconnected ***\r\n');
+          });
+        });
+      }, false);
+    </script>
+    <style>
+      body {
+        font-family: helvetica, sans-serif, arial;
+        font-size: 1em;
+        color: #111;
+      }
+      h1 {
+        text-align: center;
+      }
+      #terminal-container {
+        width: 960px;
+        height: 600px;
+        margin: 0 auto;
+        padding: 2px;
+      }
+      #terminal-container .terminal {
+        background-color: #111;
+        color: #fafafa;
+        padding: 2px;
+      }
+      #terminal-container .terminal:focus .terminal-cursor {
+        background-color: #fafafa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="terminal-container"></div>
+  </body>
+</html>
