@@ -53,9 +53,9 @@ io.on('connection', function(socket) {
   }).on('error', function(err) {
     socket.emit('data', '\r\n*** SSH CONNECTION ERROR: ' + err.message + ' ***\r\n');
   }).connect({
-    host: 'IP_ADDRESS',
-    username: 'USERNAME',
-    password: 'PASSWORD'
+    host: process.env.IP_ADDRESS,
+    username: process.env.SSH_USERNAME,
+    password: process.env.SSH_PASSWORD
   });
 });
 
