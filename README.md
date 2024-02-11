@@ -10,7 +10,7 @@ An SSH client in the browser
 npm install
 ```
 
-2 - Update the .env with IP address, Username and Password for your ssh session.
+2 - Update the `.env` with IP address, Username and Password for your ssh session.
 
 3 - Start node server:
 ```
